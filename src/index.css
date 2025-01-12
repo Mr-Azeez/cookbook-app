@@ -9,6 +9,14 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+a {
+  text-decoration: none;
+}
+
+h2 {
+  text-align: left;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
@@ -114,6 +122,7 @@ code {
   position: absolute;
   right: 30px;
   padding: 15px 20px;
+  color: #222;
 }
 
 .arrow-icon {
@@ -124,7 +133,7 @@ code {
 
 /* Header styling */
 .header1 {
-  height: 250px;
+  height: 270px;
   background-image: url("https://menufyproduction.imgix.net/638368663662716564+1279880.png?max-h=300&max-w=1000&fit=crop");
   color: #fff;
   border-radius: 30px;
@@ -133,13 +142,35 @@ code {
 }
 
 .header1 h2 {
-  text-align: left;
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-style: normal;
   font-size: 2rem;
   width: 400px;
   padding: 30px;
+}
+
+.explore-btn {
+  color: #fff;
+  border: 1px solid #fff;
+  background-color: rgba(255, 255, 255, 0.404);
+  backdrop-filter: blur(100px);
+  display: flex;
+  gap: 10px;
+  margin-left: 30px;
+  border-radius: 30px;
+  cursor: pointer;
+  height: 50px;
+  position: relative;
+  padding-right: 50px;
+}
+.explore-btn p {
+  font-size: 18px;
+  margin-block: auto;
+}
+.explore-btn .arrow-circle-icon {
+  position: absolute;
+  right: 0;
 }
 
 /* Sections */
@@ -236,7 +267,7 @@ code {
 
 /* View Details Button styling */
 .view-details-btn {
-  border: none;
+  border: 1px solid white;
   color: #ea5781;
   background-color: #fee9ee;
   margin-top: 15px;
@@ -278,9 +309,110 @@ code {
 }
 
 /* Ingredients Page */
-.ingredients-page li {
-  list-style: none;
+.ingredients-page {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
 }
+
+.food-name {
+  text-align: center;
+}
+
+.ingredients-more-action {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+.ingredients-more-action div {
+  background-color: #fff;
+  display: flex;
+  border-radius: 10px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.ingredients-more-action div .ingredients-icon {
+  padding: 10px;
+}
+.ingredients-more-action div p {
+  padding: 10px;
+}
+.ingredients-information {
+  text-align: start;
+  background-color: #fff;
+  border-radius: 10px;
+  padding-block: 10px;
+}
+
+.ingredients-information li {
+  color: #808080;
+}
+
+.ingredients-information li::marker {
+  color: #e9083f;
+}
+
+.nutrition {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.nutrition .list-of-nutrition {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px dotted #808080;
+  color: #808080;
+  text-transform: capitalize;
+  padding-block: 8px;
+}
+
+.nutrition-unit {
+  color: #e9083f;
+  font-weight: bold;
+  text-transform: lowercase;
+}
+
+.homepage-btn {
+  border: none;
+  outline: none;
+  background-color: #e9083f;
+  padding: 10px;
+  border-radius: 10px;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: capitalize;
+  cursor: pointer;
+  margin: 15px;
+}
+
+/* Favorite Page */
+.favorite-container h1 {
+  text-align: left;
+}
+
+/* Animation (Optional) */
+/* @keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateX(-100px);
+    clip-path: inset(100% 100% 0 0);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0px);
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+.recipe-card {
+  animation: appear 2s linear;
+  animation-timeline: view();
+  animation-range: entry 0% cover 40%;
+} */
 
 /* Responsive Design */
 @media screen and (max-width: 1300px) {
@@ -321,5 +453,5 @@ code {
   }
   .searchbar-container {
     width: 80%;
-  } 
+  }
 }

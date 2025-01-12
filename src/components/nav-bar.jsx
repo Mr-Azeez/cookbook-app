@@ -1,4 +1,5 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import {
   ArrowDown2,
   MessageText1,
@@ -10,13 +11,35 @@ import "../index.css";
 import { GlobalContext } from "./context";
 
 export default function NavBar() {
-  const { handleSubmit, searchParameter, setSearchParameter } =
+  const { searchParameter, setSearchParameter, setSearchResult } =
     useContext(GlobalContext);
+  const navigate = useNavigate();
+
+  async function handleSubmit(event) {
+    event.preventDefault();
+    try {
+      const apiKey = "4d7c682e693448de9a7b5a9092177bff";
+      const response = await fetch(
+        `https://api.spoonacular.com/recipes/complexSearch?query=${searchParameter}&addRecipeInformation=true&apiKey=${apiKey}&number=20`
+      );
+      const data = await response.json();
+      setSearchResult(data.results);
+      navigate(`/search-result?s=${encodeURIComponent(searchParameter)}`);
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  useEffect(() => {
+    setSearchParameter("");
+  }, [setSearchParameter]);
 
   return (
     <nav className="navbar-container">
       <div className="searchbar-container">
-        <SearchNormal1 size="25" color="#808080" className="search-icon" />
+        <Link to={`/search-result/${searchParameter}`} onClick={handleSubmit}>
+          <SearchNormal1 size="25" color="#808080" className="search-icon" />
+        </Link>
         <form onSubmit={handleSubmit}>
           <input
             type="text"
@@ -38,16 +61,18 @@ export default function NavBar() {
           <Notification className="icon" size="32" color="#222" />
         </div>
         <div className="profile-container" id="icon-container">
-          <span className="profile-img">
-            <img
-              src="https://www.w3schools.com/howto/img_avatar.png"
-              alt="Users Profile Pic"
-            />
-          </span>
-          <span className="users-name">Dieko Fashlanso</span>
-          <span>
-            <ArrowDown2 className="arrow-icon" size="18" color="#222" />
-          </span>
+          <Link to={"/profile"}>
+            <span className="profile-img">
+              <img
+                src="https://www.w3schools.com/howto/img_avatar.png"
+                alt="Users Profile Pic"
+              />
+            </span>
+            <span className="users-name">Abolurin Azeez</span>
+            <span>
+              <ArrowDown2 className="arrow-icon" size="18" color="#222" />
+            </span>
+          </Link>
         </div>
       </div>
     </nav>

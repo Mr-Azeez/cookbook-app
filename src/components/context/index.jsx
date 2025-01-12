@@ -4,24 +4,15 @@ export const GlobalContext = createContext(null);
 
 export default function GlobalState({ children }) {
   const [recipe, setRecipeList] = useState([]);
-  const [errorMessage, setErrorMessage] = useState(null);
-  const [loading, setLoading] = useState(false);
+  // const [errorMessage, setErrorMessage] = useState(null);
+  // const [loading, setLoading] = useState(false);
   const [searchParameter, setSearchParameter] = useState("");
   const [recipeIngredients, setRecipeIngredients] = useState([]);
-
-  async function handleSubmit(event) {
-    event.preventDefault();
-    try {
-      const apiKey = "4d7c682e693448de9a7b5a9092177bff";
-      const response = await fetch(
-        `https://api.spoonacular.com/recipes/complexSearch?query=${searchParameter}&addRecipeInformation=true&apiKey=${apiKey}&number=20`
-      );
-      const data = await response.json();
-      setRecipeList(data.results);
-    } catch (e) {
-      console.error(e);
-    }
-  }
+  const [nutritionData, setNutritionData] = useState([]);
+  const [detailedSteps, setDetailedSteps] = useState("");
+  const [searchResult, setSearchResult] = useState([]);
+  // const [checkFavorite, setCheckFavorite] = useState(null);
+  const [favoriteList, setFavoriteList] = useState([]);
 
   async function fetchRandomRecipe() {
     try {
@@ -41,15 +32,23 @@ export default function GlobalState({ children }) {
     fetchRandomRecipe();
   }, []);
 
+
   return (
     <GlobalContext.Provider
       value={{
         recipe,
-        handleSubmit,
         searchParameter,
         setSearchParameter,
         recipeIngredients,
-        setRecipeIngredients
+        setRecipeIngredients,
+        nutritionData,
+        setNutritionData,
+        detailedSteps,
+        setDetailedSteps,
+        searchResult,
+        setSearchResult,
+        favoriteList,
+        setFavoriteList,
       }}
     >
       {children}

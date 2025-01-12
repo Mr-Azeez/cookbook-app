@@ -17,14 +17,14 @@ export default function Home() {
       <NavBar />
       <Header />
       <HeroSections
-        title="Recipe from your connections"
-        recipe={recipe.slice(0, 9)}
+        title="Recipe Ideas"
+        recipe={recipe.slice(0, 15)}
       />
-      <HeroSections
+      {/* <HeroSections
         title="Recommended only for you"
         recipe={recipe.slice(0, 3)}
       />
-      <HeroSections title="Most popular recipes" recipe={recipe.slice(0, 3)} />
+      <HeroSections title="Most popular recipes" recipe={recipe.slice(0, 3)} /> */}
     </div>
   );
 }
